@@ -40,7 +40,7 @@ def get_occurrences(pattern, text):
     for char in pattern:
         ph += ord(char)
     ph %= num
-    # window hash
+    # window hash (apreikina windowu texta)
     wh = 0
     for j in range(len(pattern)):
         wh += ord(text[j])
@@ -50,13 +50,12 @@ def get_occurrences(pattern, text):
         if wh == ph:
             if text[i:i+len(pattern)] == pattern:
                 result.append(i)
-    # and return an iterable variable
+    # update window
         if i < len(text) - len(pattern):
             wh -= ord(text[i])
             wh += ord(text[i + len(pattern)])
             wh %= num
     
-    # return [0]
     return result
 
 # this part launches the functions
